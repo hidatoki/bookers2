@@ -1,4 +1,4 @@
-class BookController < ApplicationController
+class BooksController < ApplicationController
   
   def new
   end
@@ -7,12 +7,14 @@ class BookController < ApplicationController
   end
   
   def index
+    @books = Book.all
   end
   
   def show
   end
   
   def edit
+
   end 
   
   def update
