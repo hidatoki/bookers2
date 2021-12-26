@@ -3,7 +3,7 @@
     <% @book.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>
-  <% end %>
+<% end %>
 
   <div class="container">
     <div class="row">
@@ -20,7 +20,7 @@
             </tr>
             <tr>
               <th>introduction</th>
-              <th><%= @book.user.body %></th>
+              <th><%= @book.user.introduction %></th>
               <th></th>
             </tr>
           </tbody>
