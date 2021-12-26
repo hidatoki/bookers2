@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :authenticate_user!
 
   def index
     @users = User.all
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
     @book_new = Book.new
     @book = current_user
   end
-  
+
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
     if @user == current_user
        render "edit"
     else
-       redirect_to users_path
+       redirect_to current_user
     end
   end
 
@@ -56,5 +57,5 @@ class UsersController < ApplicationController
         redirect_to user_path(current_user.id)
      end
   end
-  
+
 end
