@@ -1,0 +1,26 @@
+<% if current_user %>
+<h2>User Info</h2>
+ <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <table>
+     <tbody>
+         <tr>
+          <th>name</th>
+          <th><%= current_user.name %></th>
+         </tr>
+         <tr>
+          <th>introduction</th>
+          <th><%= current_user.body %></th>
+         </tr>
+     </tbody>
+  </table>
+ <div><%= link_to "プロフィール編集", edit_user_path(current_user), class: "pull-right" %></div> 
+<% end %>
+
+<h2>New Book</h2>
+ <%= form_with model:book, local:true do |f| %>
+   <h4>Title</h4>
+   <%= f.text_field :title %>
+   <h4>Opinion</h4>
+   <%= f.text_area :body %>
+   <div><%= f.submit 'Create Book' %></div>
+ <% end %>
