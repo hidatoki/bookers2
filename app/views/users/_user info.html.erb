@@ -1,0 +1,16 @@
+<h2>User Info</h2>
+ <%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <table>
+     <tbody>
+         <tr>
+          <th>name</th>
+          <th><%= current_user.name %></th>
+         </tr>
+         <tr>
+          <th>introduction</th>
+          <th><%= current_user.body %></th>
+         </tr>
+     </tbody>
+  </table>
+ <div><%= link_to "プロフィール編集", edit_user_path(current_user.id), class: "pull-right" %></div> 
+<% end %>
