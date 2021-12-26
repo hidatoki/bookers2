@@ -1,5 +1,5 @@
 <%= render 'users/user info' %>
-<%= render 'books/newbook', book_new: @book_new %>
+<%= render 'books/new book', book_new: @book_new %>
 
 <h2>Books</h2>
   <table>
@@ -15,11 +15,13 @@
       <tr>
          <td>
           <%= attachment_image_tag @users, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
-          <%= link_to user_path(book.user_id) do %> 
+          <%= link_to user_path(book.user_id) do %>
+          <% end %>
          </td>
          <td>
           <%= link_to book_path(book.id) do %>
           <p><%= book.title %></p>
+          <% end %>
          </td>
          <td>
           <p><%= book.body %></p>
