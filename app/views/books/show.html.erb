@@ -1,15 +1,40 @@
-<div class="col-md-8 offset-md-1">
-  		<h2>Book detail</h2>
-  		<table class="table">
-  		  <tbody><tr>
-          <td><a href="/users/46328">
-            <img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg"><br>
-            Olivia
-            </a>      
-          </td>
-          <td><a href="/books/36759">リーダブルコード</a></td>
-          <td>より良いコードを書くためのシンプルで実践的なテクニック。</td>
-        </tr>
-      </tbody></table>
-    </div>
-<%= render 'books/user info', user: @user, book: @book %>
+<h2>User info</h2>
+        <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" ,format: 'no_image.jpg' %>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <th><%= @book.user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= @book.user.introduction %></th>
+            </tr>
+          </tbody>
+        </table>
+        <div><%= link_to "プロフィール編集", edit_user_path(@book.user), class: "pull-right" %></div> 
+
+<%= render 'books/new book', book_new: @book_new %>
+
+<h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %><br><%= link_to user_path(@book.user_id) do %><%= @book.user.name %><% end %></td>
+              <td><%= link_to book_path do %>
+                  <p><%= @book.title %></p>
+                  <% end %>
+              </td>
+              <td><%= @book.body %></td>
+
+              <% if @book.user == current_user %>
+              <td>
+                <%=link_to "Edit",edit_book_path(@book.id) %>
+              </td>
+              <td>
+                <%=link_to "Destroy",book_path(@book.id) method: :delete, "data-confirm" => "本当に消しますか?" %>
+              </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
